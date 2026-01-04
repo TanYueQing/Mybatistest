@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<mapper namespace="com.mybatis.dao.Cdatadao">
+    <!--<resultMap id="BaseResultMap" type="com.mybatis.Cdata">-->
+        <!--&lt;!&ndash;<id column="id" jdbcType="BIGINT" property="id"/>&ndash;&gt;-->
+        <!--<result column="tid" jdbcType="int" property="tid"/>-->
+        <!--<result column="current_day" jdbcType="int" property="currentDay"/>-->
+    <!--</resultMap>-->
+
+<!-- id:statement的id 或者叫做sql的id-->
+<!-- parameterType:声明输入参数的类型 -->
+<!-- resultType:声明输出结果的类型，应该填写pojo的全路径 -->
+<!-- #{}：输入参数的占位符，相当于jdbc的？ -->
+<select id="queryById" parameterType="int" resultType="com.mybatis.pojo.Cdata">
+		SELECT * FROM `cdata` WHERE tid  = #{tid};
+	</select>
+
+    <insert id="add" parameterType="com.mybatis.pojo.Cdata">
+		insert into cdata values (#{tid},#{currentDay});
+	</insert>
+
+    <delete id="dele" parameterType="int" >
+		delete FROM `cdata` WHERE tid  = #{tid};
+	</delete>
+</mapper>
